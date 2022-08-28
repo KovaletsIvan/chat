@@ -25,7 +25,7 @@ const Message = ({ contact }) => {
   const image = userUrl ? userUrl : user;
 
   const getDate = (date) => {
-    return new Date(date).toLocaleString('en-US') ;
+    return new Date(date).toLocaleString("en-US");
   };
 
   return (

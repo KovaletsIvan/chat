@@ -17,6 +17,10 @@ const Contacts = () => {
       contact.name.toLowerCase().includes(text.toLowerCase())
     );
 
+  const lastDateMessage = list.map((cont) => cont.messages);
+
+  console.log(lastDateMessage);
+
   return (
     <ul className="contacts_lists list-unstyled">
       {filteredList.map((contact) => (

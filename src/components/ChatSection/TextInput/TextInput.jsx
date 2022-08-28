@@ -17,14 +17,6 @@ const TextInput = () => {
 
   const dispatch = useDispatch();
 
-
-
-  // const scrollToMyRef = () => {
-  //   const scroll =
-  //     chatContainer.current.scrollHeight - chatContainer.current.clientHeight;
-  //   chatContainer.current.scrollTo(0, scroll);
-  // };
-
   const { uid } = useSelector((state) => state.uidContact);
   const { contactList } = useSelector((state) => state.list);
 
