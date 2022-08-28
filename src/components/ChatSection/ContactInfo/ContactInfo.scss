@@ -1,0 +1,22 @@
+.info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background-color: #f2f3f4;
+  border-bottom: 1px solid #d7dbdd;
+  padding: 20px;
+  height: 12%;
+
+  &_check {
+    position: absolute;
+    left: 57px;
+    top: 35px;
+    left: 40px;
+    height: 15px;
+  }
+}
+.contact_photo {
+  height: 50px;
+  border-radius: 50%;
+}

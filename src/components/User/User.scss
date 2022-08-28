@@ -1,0 +1,52 @@
+.header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #F2F3F4;
+    width:100%;
+    padding: 15px 15px;
+    border-bottom: 1px solid #D7DBDD;
+
+    @media screen and (max-width:699px) {
+        width: 100vw;
+    }
+   
+  }
+  .user-photo {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+  }
+  .logout {
+    position: relative;
+    top:-60px;
+    margin-left: auto;
+    cursor: pointer;
+  }
+  .user-name{
+    position: absolute;
+    top:40px;
+    left: 90px;
+  }
+  .check{
+    position: absolute;
+    height: 15px;
+    top:63px;
+    left:65px;
+  }
+  .input{
+    padding-left: 45px;
+    width:100%;
+    border-radius: 50px;
+    border: none;
+    height: 34px;
+  }
+  .search{
+    position: absolute;
+    background: transparent;
+    height: 20px;
+    opacity: .4;
+    top:8px;
+    left:15px;
+  }

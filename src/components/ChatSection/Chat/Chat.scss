@@ -1,0 +1,10 @@
+.chat-field {
+  height: 70%;
+  border-bottom: 1px solid #d7dbdd;
+  overflow-y: scroll;
+}
+
+.chat-field__list {
+  list-style-type: none;
+  margin-right: 40px;
+}

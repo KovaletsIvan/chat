@@ -1,0 +1,20 @@
+.form {
+  gap:20px;
+  padding:35px 24px;
+  border: 1px solid;
+  border-radius: 4px;
+  width: 420px;
+  @media screen and(max-width:440px) {
+    padding: 45px 18px;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+  }
+}
+.text{
+  max-width: 180px;
+  opacity: .7;
+}
+.text:hover{
+  opacity: .9;
+}
