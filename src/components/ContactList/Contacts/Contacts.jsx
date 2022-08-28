@@ -17,13 +17,17 @@ const Contacts = () => {
       contact.name.toLowerCase().includes(text.toLowerCase())
     );
 
-  const lastDateMessage = list.map((cont) => cont.messages);
+  const lastDateMessage = list.sort(
+    (a, b) => b.lastMessageDate - a.lastMessageDate
+  );
+
+  const listToRender = text ? filteredList : lastDateMessage;
 
   console.log(lastDateMessage);
 
   return (
     <ul className="contacts_lists list-unstyled">
-      {filteredList.map((contact) => (
+      {listToRender.map((contact) => (
         <Contact
           key={contact.uid}
           uid={contact.uid}

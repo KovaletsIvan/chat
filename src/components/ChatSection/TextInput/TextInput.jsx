@@ -67,6 +67,7 @@ const TextInput = () => {
             const washingtonRef = doc(db, "contacts", uid);
             updateDoc(washingtonRef, {
               messages: data,
+              lastMessageDate: Date.now(),
             });
           })
           .then(() => {
@@ -84,7 +85,6 @@ const TextInput = () => {
           });
       });
   };
-
 
   return (
     <div className="textform">
