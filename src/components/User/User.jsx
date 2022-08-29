@@ -25,6 +25,7 @@ const User = () => {
   };
 
   const singOut = () => {
+    localStorage.removeItem("isAuth");
     signOut(auth)
       .then(() => {
         dispatch(logOut());
@@ -43,7 +44,7 @@ const User = () => {
       <img className="user-photo" src={userImg} alt="userImage"></img>
       <span className="user-name">{displayName}</span>
       <span className="logout" role="btn" onClick={singOut}>
-      &times;
+        &times;
       </span>
       <span className="position-relative">
         <img className="search" src={search} />

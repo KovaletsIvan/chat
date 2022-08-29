@@ -23,7 +23,6 @@ const ContactInfo = () => {
 
   useEffect(() => getUserImage(), [list]);
 
- 
   const getUserImage = () => {
     const contact = list.filter((data) => data.uid === contactId);
 
@@ -42,8 +41,6 @@ const ContactInfo = () => {
     dispatch(getContact(list[0]?.uid ? list[0].uid : ""));
   };
   const image = userUrl ? userUrl : user;
-
-  console.log(list);
 
   return (
     <div className="info">

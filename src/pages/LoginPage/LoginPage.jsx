@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 import { auth } from "../../firebase-config";
-
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -14,6 +14,10 @@ import GitBtn from "../../components/GitBtn/GitBtn";
 
 import { logIn } from "../../store/clices/loginSlicer";
 
+import { db } from "../../firebase-config";
+
+import { useAuth } from "../../hook/useAuth";
+
 import "./LoginPage.scss";
 
 export const LoginPage = () => {
@@ -21,10 +25,26 @@ export const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { isLogin } = useAuth();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) return user.uid;
+      if (user) {
+        const { uid } = user;
+        console.log(uid);
+        const docRef = query(
+          collection(db, "userData"),
+          where("uid", "==", uid)
+        );
+        getDocs(docRef).then((resp) => {
+          resp.forEach((doc) => dispatch(logIn(doc.data())));
+        });
+      }
     });
+  }, []);
+
+  useEffect(() => {
+    if (isLogin) navigate("/chat", { replace: true });
   }, []);
 
   const handleChange = (e) => {
@@ -38,12 +58,12 @@ export const LoginPage = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         const { email, uid, displayName, photoURL } = user;
+        localStorage.setItem("isAuth", !!user.uid);
         dispatch(logIn({ email, uid, displayName, photoURL }));
         navigate("/chat", { replace: true });
       })
       .catch(console.error);
   };
-
 
   const { email, password } = userData;
 

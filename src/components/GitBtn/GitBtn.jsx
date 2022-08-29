@@ -21,6 +21,7 @@ const GitBtn = () => {
     signInWithPopup(auth, provider)
       .then(({ user }) => {
         const { email, uid, displayName, photoURL } = user;
+        localStorage.setItem("isAuth", !!user.uid);
         dispatch(logIn({ email, uid, displayName, photoURL }));
         navigate("/chat", { replace: true });
 
