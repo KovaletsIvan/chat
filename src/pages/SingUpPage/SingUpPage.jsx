@@ -5,8 +5,7 @@ import { useNavigate } from "react-router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
-import { auth } from "../../firebase-config";
-import { db } from "../../firebase-config";
+import { auth, db } from "../../firebase";
 
 import { logIn } from "../../store/clices/loginSlicer";
 

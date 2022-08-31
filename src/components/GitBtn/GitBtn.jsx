@@ -5,8 +5,7 @@ import { signInWithPopup, GithubAuthProvider } from "firebase/auth";
 
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 
-import { auth } from "../../firebase-config";
-import { db } from "../../firebase-config";
+import { auth, db  } from "../../firebase";
 
 import { logIn } from "../../store/clices/loginSlicer";
 

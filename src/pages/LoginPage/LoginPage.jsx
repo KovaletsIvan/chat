@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
-import { auth } from "../../firebase-config";
+import { auth, db } from "../../firebase";
 
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
@@ -13,8 +13,6 @@ import GoogleBtn from "../../components/GoogleBtn/GoogleBtn";
 import GitBtn from "../../components/GitBtn/GitBtn";
 
 import { logIn } from "../../store/clices/loginSlicer";
-
-import { db } from "../../firebase-config";
 
 import { useAuth } from "../../hook/useAuth";
 
@@ -31,7 +29,6 @@ export const LoginPage = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid } = user;
-        console.log(uid);
         const docRef = query(
           collection(db, "userData"),
           where("uid", "==", uid)
@@ -41,11 +38,11 @@ export const LoginPage = () => {
         });
       }
     });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isLogin) navigate("/chat", { replace: true });
-  }, []);
+  }, [navigate,isLogin]);
 
   const handleChange = (e) => {
     setUserData({

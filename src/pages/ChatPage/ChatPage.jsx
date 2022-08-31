@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { auth,db } from "../../firebase-config";
+import { auth,db } from "../../firebase";
 
 import User from "../../components/User/User";
 import ContactList from "../../components/ContactList/ContactList";
@@ -32,7 +32,7 @@ const ChatPage = () => {
         });
       }
     });
-  }, []);
+  }, [dispatch]);
 
   const getContactsData = () => {
     getDocs(collection(db, "contacts"))

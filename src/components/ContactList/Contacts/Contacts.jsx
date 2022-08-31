@@ -1,17 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Contact from "../Contact/Contact";
 
 import { useContacts } from "../../../hook/useContacts";
 
-import { getUid } from "../../../store/clices/uidSlicer";
-
 import "./Contacts.scss";
-import { useEffect } from "react";
 
 const Contacts = () => {
   const text = useSelector((state) => state.search.searchData);
-  const dispatch = useDispatch();
 
   const list = useContacts();
 
@@ -26,7 +22,6 @@ const Contacts = () => {
   );
 
   const listToRender = text ? filteredList : lastDateMessage;
-
 
   return (
     <ul className="contacts_lists list-unstyled">

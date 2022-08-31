@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 
 import { signOut } from "firebase/auth";
 
-import { auth } from "../../firebase-config";
+import { auth } from "../../firebase";
 
 import { useAuth } from "../../hook/useAuth";
 
@@ -47,7 +47,7 @@ const User = () => {
         &times;
       </span>
       <span className="position-relative">
-        <img className="search" src={search} />
+        <img className="search" src={search} alt="..."/>
         <input
           type="text"
           name="text"

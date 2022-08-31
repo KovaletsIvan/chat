@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { collection, doc, updateDoc, getDocs } from "firebase/firestore";
 
-import { db } from "../../../firebase-config";
+import { db } from "../../../firebase";
 
 import send from "../../../images/send.png";
 
