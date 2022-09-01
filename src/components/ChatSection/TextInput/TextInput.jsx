@@ -30,24 +30,25 @@ const TextInput = () => {
     setMessage(e.target.value);
   };
 
+  const getDataToRendr = () =>
+    getDocs(collection(db, "contacts")).then((resp) => {
+      const arr = [];
+      resp.forEach((doc) => {
+        arr.push(doc.data());
+      });
+      return arr;
+    });
+
   const sendMessage = async () => {
     const washingtonRef = doc(db, "contacts", uid);
     await updateDoc(washingtonRef, {
       messages: [...messages, { to: message, date: Date.now() }],
-    }).then(() => {
-      getDocs(collection(db, "contacts"))
-        .then((resp) => {
-          const arr = [];
-          resp.forEach((doc) => {
-            arr.push(doc.data());
-          });
-          return arr;
-        })
-        .then((data) => {
-          dispatch(getList(data));
-          setMessage("");
-        });
-    });
+    })
+      .then(() => getDataToRendr())
+      .then((resp) => {
+        dispatch(getList(resp));
+        setMessage("");
+      });
   };
 
   const getResponce = () => {
@@ -65,36 +66,42 @@ const TextInput = () => {
           })
           .then((data) => {
             const washingtonRef = doc(db, "contacts", uid);
-            updateDoc(washingtonRef, {
-              messages: data,
-              lastMessageDate: Date.now(),
-            });
-          })
-          .then(() => {
-            setTimeout(function () {
-              getDocs(collection(db, "contacts"))
-                .then((resp) => {
-                  const arr = [];
-                  resp.forEach((doc) => {
-                    arr.push(doc.data());
-                  });
-                  return arr;
-                })
+            const delay = Math.floor(
+              Math.random() * (15000 - 10000 + 1) + 10000
+            );
+            setTimeout(() => {
+              updateDoc(washingtonRef, {
+                messages: data,
+                lastMessageDate: Date.now(),
+              })
+                .then(() => getDataToRendr())
                 .then((data) => dispatch(getList(data)));
-            }, 15000);
+            }, delay);
           });
       });
   };
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (message) {
+        sendMessage();
+        getResponce();
+      }
+    }
+  };
+
   return (
-    <div className="textform">
+    <div className="textform" onKeyDown={handleKeyPress}>
       <form className="form-area">
         <input
           className="textinput"
           type="text"
           placeholder="Type your message"
           value={message}
-          onChange={handleChanges}
+          onChange={(e) => {
+            handleChanges(e);
+          }}
         />
         <img
           className="send"
