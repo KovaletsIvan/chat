@@ -15,3 +15,14 @@
     width: 100vw;
   }
 }
+.hide-bar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #d7dbdd;
+  width: 600px;
+  height: 100vh;
+
+  @media screen and (max-width: 699px) {
+    display: none;
+  }
+}

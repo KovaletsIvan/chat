@@ -7,3 +7,14 @@
     display: none;
   }
 }
+.show-chat {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media screen and(max-width: 699px) {
+    display: flex;
+    flex-direction: column;
+    // width: 100vw;
+  }
+}

@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { auth,db } from "../../firebase";
+import { auth, db } from "../../firebase";
 
 import User from "../../components/User/User";
 import ContactList from "../../components/ContactList/ContactList";
@@ -17,8 +17,25 @@ import { logIn } from "../../store/clices/loginSlicer";
 import "./ChatPage.scss";
 
 const ChatPage = () => {
+  const [chatClass, setChatClass] = useState("chat");
+  const [listClass, setListClass] = useState("bar");
+  const [contactListClass, setContactListClass] = useState("");
+
   const dispatch = useDispatch();
- 
+
+  const toggleContactListClass = () => {
+    setContactListClass(contactListClass ? "" : "hide-list");
+    toggleChat();
+  };
+
+  const toggleChat = () => {
+    setChatClass(chatClass === "chat" ? "show-chat" : "chat");
+  };
+
+  const toggleContactList = () => {
+    setListClass(listClass === "bar" ? "hide-bar" : "bar");
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -50,11 +67,20 @@ const ChatPage = () => {
 
   return (
     <div className="chat-page">
-      <div className="bar">
+      <div className={listClass}>
         <User />
-        <ContactList />
+        <ContactList
+          toggleContactListClass={toggleContactListClass}
+          toggleContactList={toggleContactList}
+          contactListClass={contactListClass}
+        />
       </div>
-      <ChatSection />
+      <ChatSection
+        chatClass={chatClass}
+        toggleContactList={toggleContactList}
+        toggleChat={toggleChat}
+        toggleContactListClass={toggleContactListClass}
+      />
     </div>
   );
 };

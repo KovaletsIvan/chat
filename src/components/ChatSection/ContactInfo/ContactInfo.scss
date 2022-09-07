@@ -8,15 +8,37 @@
   padding: 20px;
   min-height: 12%;
 
+  @media screen and(max-width:699px) {
+    padding-left: 80px;
+  }
+
   &_check {
     position: absolute;
     left: 57px;
     top: 35px;
     left: 40px;
     height: 15px;
+
+    @media screen and(max-width:699px) {
+      display: none;
+    }
   }
 }
 .contact_photo {
   height: 50px;
   border-radius: 50%;
+  @media screen and(max-width:699px) {
+    display: none;
+  }
+}
+.moveback-img {
+  display: none;
+
+  @media screen and(max-width:699px) {
+    display: block;
+    position: absolute;
+    left: 55px;
+    height: 30px;
+    opacity: 0.6;
+  }
 }

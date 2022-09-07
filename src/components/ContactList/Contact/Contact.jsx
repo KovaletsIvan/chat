@@ -11,11 +11,18 @@ import user from "../../../images/user.png";
 
 import "./Contact.scss";
 
-const Contact = ({ name, messages, photoName, uid, imageUrl }) => {
+const Contact = ({
+  name,
+  messages,
+  photoName,
+  uid,
+  imageUrl,
+  toggleContactListClass,
+  toggleContactList,
+}) => {
   const [message, setMessage] = useState([]);
 
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dataToShow();
@@ -45,7 +52,14 @@ const Contact = ({ name, messages, photoName, uid, imageUrl }) => {
     : null;
 
   return (
-    <li className="contact d-flex position-relative" onClick={getUserId}>
+    <li
+      className="contact d-flex position-relative"
+      onClick={() => {
+        getUserId();
+        toggleContactListClass();
+        toggleContactList();
+      }}
+    >
       <img className="check-img" src={check} alt="..." />
       <img className="userImage" src={image} alt={photoName} />
       <div>

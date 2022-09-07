@@ -9,10 +9,15 @@ import { getContact } from "../../../store/clices/contactSlicer";
 
 import user from "../../../images/user.png";
 import check from "../../../images/check.png";
+import arrow from "../../../images/back-arrow.jpeg";
 
 import "./ContactInfo.scss";
 
-const ContactInfo = () => {
+const ContactInfo = ({
+  toggleContactList,
+  toggleChat,
+  toggleContactListClass,
+}) => {
   const [userUrl, setUserUrl] = useState();
   const [name, setName] = useState("");
 
@@ -44,6 +49,17 @@ const ContactInfo = () => {
 
   return (
     <div className="info">
+      <img
+        className="moveback-img"
+        role="button"
+        src={arrow}
+        alt="arrow"
+        onClick={() => {
+          toggleContactList();
+          toggleChat();
+          toggleContactListClass();
+        }}
+      />
       <div className="position-relative">
         <img className="info_check" src={check} alt="..." />
         <img className="contact_photo" src={image} alt="..." />

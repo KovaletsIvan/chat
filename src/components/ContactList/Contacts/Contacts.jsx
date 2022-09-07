@@ -6,7 +6,7 @@ import { useContacts } from "../../../hook/useContacts";
 
 import "./Contacts.scss";
 
-const Contacts = () => {
+const Contacts = ({ toggleContactListClass, toggleContactList }) => {
   const text = useSelector((state) => state.search.searchData);
 
   const list = useContacts();
@@ -24,7 +24,7 @@ const Contacts = () => {
   const listToRender = text ? filteredList : lastDateMessage;
 
   return (
-    <ul className="contacts_lists list-unstyled">
+    <ul className="contacts-lists list-unstyled">
       {listToRender.map((contact) => (
         <Contact
           key={contact.uid}
@@ -33,6 +33,8 @@ const Contacts = () => {
           messages={contact.messages}
           photoName={contact.photoName}
           imageUrl={contact.imageUrl}
+          toggleContactListClass={toggleContactListClass}
+          toggleContactList={toggleContactList}
         />
       ))}
     </ul>
